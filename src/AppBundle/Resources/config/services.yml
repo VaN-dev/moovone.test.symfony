@@ -1,0 +1,12 @@
+services:
+    kernel.listener.doctrine:
+        class: AppBundle\Listener\DoctrineListener
+        public: false
+        arguments:
+            - "@app.encoder.id"
+        tags:
+            - { name: doctrine.event_listener, event: postLoad }
+            - { name: doctrine.event_listener, event: preFlush }
+
+    app.encoder.id:
+        class: AppBundle\Service\Encoder\IdEncoder
