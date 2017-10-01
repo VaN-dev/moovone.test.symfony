@@ -3,8 +3,7 @@
 namespace AppBundle\Model;
 
 /**
- * Interface SoftDeletable
- * @package AppBundle\Model
+ * Interface SoftDeletable.
  */
 interface SoftDeletable
 {
@@ -15,6 +14,7 @@ interface SoftDeletable
 
     /**
      * @param \DateTime $datetime
+     *
      * @return mixed
      */
     public function setDeletedAt(\DateTime $datetime);

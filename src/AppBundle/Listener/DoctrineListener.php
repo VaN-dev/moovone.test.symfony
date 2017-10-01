@@ -10,8 +10,7 @@ use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreFlushEventArgs;
 
 /**
- * Class DoctrineListener
- * @package AppBundle\Listener
+ * Class DoctrineListener.
  */
 class DoctrineListener implements EventSubscriber
 {
@@ -22,6 +21,7 @@ class DoctrineListener implements EventSubscriber
 
     /**
      * DoctrineListener constructor.
+     *
      * @param IdEncoder $idEncoder
      */
     public function __construct(IdEncoder $idEncoder)
@@ -43,7 +43,7 @@ class DoctrineListener implements EventSubscriber
     public function postLoad(LifecycleEventArgs $args)
     {
         /**
-         * @var Movie $movie
+         * @var Movie
          */
         $movie = $args->getObject();
         $hash = $this->idEncoder->encode($movie->getId());
@@ -60,11 +60,10 @@ class DoctrineListener implements EventSubscriber
             if ($object instanceof SoftDeletable) {
                 if ($object->getDeletedAt() instanceof \Datetime) {
                     continue;
-                } else {
-                    $object->setDeletedAt(new \DateTime());
-                    $em->merge($object);
-                    $em->persist($object);
                 }
+                $object->setDeletedAt(new \DateTime());
+                $em->merge($object);
+                $em->persist($object);
             }
         }
     }

@@ -5,8 +5,7 @@ namespace AppBundle\Service\Encoder;
 use Hashids\Hashids;
 
 /**
- * Class IdEncoder
- * @package AppBundle\Service\Encoder
+ * Class IdEncoder.
  */
 class IdEncoder
 {
@@ -25,6 +24,7 @@ class IdEncoder
 
     /**
      * @param $id
+     *
      * @return string
      */
     public function encode($id)
@@ -34,6 +34,7 @@ class IdEncoder
 
     /**
      * @param $id
+     *
      * @return mixed
      */
     public function decode($id)

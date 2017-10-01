@@ -7,14 +7,13 @@ use AppBundle\Form\Type\MovieType;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Request\ParamFetcher;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Form\Form;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class MovieController
- * @package AppBundle\Controller
+ * Class MovieController.
  */
 class MovieController extends Controller
 {
@@ -24,8 +23,9 @@ class MovieController extends Controller
      * @Rest\QueryParam(name="order", default="id", requirements="(id|name)", nullable=true, description="Sorted field")
      * @Rest\QueryParam(name="dir", default="asc", requirements="(asc|desc)", nullable=true, description="Sort direction")
      *
-     * @param Request $request
+     * @param Request      $request
      * @param ParamFetcher $paramFetcher
+     *
      * @return JsonResponse
      */
     public function getMoviesAction(Request $request, ParamFetcher $paramFetcher)
@@ -39,7 +39,7 @@ class MovieController extends Controller
 
             $movies = [];
             foreach ($pagerfanta->getCurrentPageResults() as $movie) {
-                /**
+                /*
                  * @var Movie $movie
                  */
                 $movies[] = [
@@ -53,7 +53,7 @@ class MovieController extends Controller
                 'count' => count($movies),
                 'data' => $movies,
             ], Response::HTTP_OK);
-        } catch (\Exception $e  ) {
+        } catch (\Exception $e) {
             $response = new JsonResponse('Page not found.', Response::HTTP_NOT_FOUND);
         }
 
@@ -91,6 +91,7 @@ class MovieController extends Controller
      * @Rest\Post("/movies")
      *
      * @param Request $request
+     *
      * @return Movie|Form
      */
     public function postMovieAction(Request $request)
@@ -108,9 +109,9 @@ class MovieController extends Controller
             $em->refresh($movie);
 
             return $movie;
-        } else {
-            return $form;
         }
+
+        return $form;
     }
 
     /**
@@ -118,6 +119,7 @@ class MovieController extends Controller
      * @Rest\View(statusCode=Response::HTTP_NO_CONTENT)
      *
      * @param Request $request
+     *
      * @return JsonResponse
      */
     public function deleteMovieAction(Request $request)
@@ -129,7 +131,7 @@ class MovieController extends Controller
         $movie = $em->getRepository('AppBundle:Movie')->find($id);
 
         if (null === $movie) {
-            return new JsonResponse("Resource not found.", Response::HTTP_NOT_FOUND);
+            return new JsonResponse('Resource not found.', Response::HTTP_NOT_FOUND);
         }
 
         $movie->setDeletedAt(new \DateTime());

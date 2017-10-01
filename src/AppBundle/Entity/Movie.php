@@ -3,12 +3,12 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Model\SoftDeletable;
+use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
-use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Movie
+ * Movie.
  *
  * @ORM\Table(name="movie")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\MovieRepository")
@@ -43,7 +43,6 @@ class Movie implements SoftDeletable
      */
     private $deletedAt;
 
-
     /**
      * @param string $id
      */
@@ -53,7 +52,7 @@ class Movie implements SoftDeletable
     }
 
     /**
-     * Get id
+     * Get id.
      *
      * @return string
      */
@@ -63,7 +62,7 @@ class Movie implements SoftDeletable
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
      *
@@ -77,7 +76,7 @@ class Movie implements SoftDeletable
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -96,6 +95,7 @@ class Movie implements SoftDeletable
 
     /**
      * @param \DateTime $deletedAt
+     *
      * @return Movie
      */
     public function setDeletedAt(\DateTime $deletedAt)
@@ -104,7 +104,4 @@ class Movie implements SoftDeletable
 
         return $this;
     }
-
-
 }
-

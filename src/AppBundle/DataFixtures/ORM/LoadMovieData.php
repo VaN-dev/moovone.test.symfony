@@ -7,8 +7,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
 /**
- * Class LoadMovieData
- * @package AppBundle\DataFixtures\ORM
+ * Class LoadMovieData.
  */
 class LoadMovieData extends Fixture
 {

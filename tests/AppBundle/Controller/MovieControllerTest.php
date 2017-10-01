@@ -30,13 +30,13 @@ class MovieControllerTest extends WebTestCase
         $client = static::createClient();
 
         $data = [
-            "name" => "unit test movie",
+            'name' => 'unit test movie',
         ];
 
         $client->request('POST', '/v1/movies', $data);
 
         $this->assertEquals(Response::HTTP_CREATED, $client->getResponse()->getStatusCode());
-        $this->assertContains("name", $client->getResponse()->getContent());
+        $this->assertContains('name', $client->getResponse()->getContent());
     }
 
     public function testDeleteMovieAction()
