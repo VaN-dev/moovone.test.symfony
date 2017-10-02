@@ -20,7 +20,7 @@ class Movie implements SoftDeletable
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="string")
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @Serializer\Groups({"movie"})
@@ -44,17 +44,21 @@ class Movie implements SoftDeletable
     private $deletedAt;
 
     /**
-     * @param string $id
+     * @param $id
+     *
+     * @return $this
      */
     public function setId($id)
     {
         $this->id = $id;
+
+        return $this;
     }
 
     /**
      * Get id.
      *
-     * @return string
+     * @return integer
      */
     public function getId()
     {
